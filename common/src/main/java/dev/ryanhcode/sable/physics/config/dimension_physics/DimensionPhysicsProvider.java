@@ -1,5 +1,6 @@
 package dev.ryanhcode.sable.physics.config.dimension_physics;
 
+import dev.ryanhcode.sable.physics.config.block_properties.PhysicsBlockPropertiesProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -104,12 +105,12 @@ public abstract class DimensionPhysicsProvider implements DataProvider {
         }
 
         /**
-         * @param function pressure function
+         * @param builder pressure function builder
          * @return this
-         * @see BezierResourceFunction
+         * @see BezierResourceFunction.Builder
          */
-        public Builder pressureFunc(BezierResourceFunction function) {
-            this.pressureFunction = Optional.of(function);
+        public Builder pressureFunc(Function<BezierResourceFunction.Builder, BezierResourceFunction.Builder> builder) {
+            this.pressureFunction = Optional.of(builder.apply(new BezierResourceFunction.Builder()).build());
             return this;
         }
 
