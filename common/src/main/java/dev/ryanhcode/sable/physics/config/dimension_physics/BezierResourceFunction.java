@@ -3,7 +3,6 @@ package dev.ryanhcode.sable.physics.config.dimension_physics;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.DataResult;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
-import dev.ryanhcode.sable.physics.config.block_properties.BlockStateConditionSet;
 import dev.ryanhcode.sable.util.SableCodecUtil;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.network.codec.ByteBufCodecs;

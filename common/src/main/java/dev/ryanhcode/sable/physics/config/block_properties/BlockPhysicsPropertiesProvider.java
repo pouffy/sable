@@ -16,13 +16,13 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import java.util.function.Supplier;
 
-public abstract class PhysicsBlockPropertiesProvider implements DataProvider {
+public abstract class BlockPhysicsPropertiesProvider implements DataProvider {
     protected final PackOutput.PathProvider pathProvider;
     private final CompletableFuture<HolderLookup.Provider> registries;
     protected final String modId;
     private final Map<ResourceLocation, PhysicsBlockPropertiesDefinition> definitions = new HashMap<>();
 
-    public PhysicsBlockPropertiesProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries, String modId) {
+    public BlockPhysicsPropertiesProvider(PackOutput packOutput, CompletableFuture<HolderLookup.Provider> registries, String modId) {
         this.pathProvider = packOutput.createPathProvider(PackOutput.Target.DATA_PACK, "physics_block_properties");
         this.registries = registries;
         this.modId = modId;
@@ -32,7 +32,7 @@ public abstract class PhysicsBlockPropertiesProvider implements DataProvider {
 
     public final CompletableFuture<?> run(CachedOutput output) {
         return this.registries.thenCompose((provider) -> {
-            Set<CompletableFuture<?>> list = new HashSet<>();
+            final Set<CompletableFuture<?>> list = new HashSet<>();
             this.addProperties(provider);
             this.definitions.forEach((id, definition) -> {
                 list.add(DataProvider.saveStable(output, provider, PhysicsBlockPropertiesDefinition.CODEC, definition, this.pathProvider.json(id)));

@@ -1,6 +1,5 @@
 package dev.ryanhcode.sable.physics.config.dimension_physics;
 
-import dev.ryanhcode.sable.physics.config.block_properties.PhysicsBlockPropertiesProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.CachedOutput;
 import net.minecraft.data.DataProvider;
@@ -31,7 +30,7 @@ public abstract class DimensionPhysicsProvider implements DataProvider {
 
     public final CompletableFuture<?> run(CachedOutput output) {
         return this.registries.thenCompose((provider) -> {
-            Set<CompletableFuture<?>> list = new HashSet<>();
+            final Set<CompletableFuture<?>> list = new HashSet<>();
             this.addProperties(provider);
             this.definitions.forEach((id, definition) -> {
                 list.add(DataProvider.saveStable(output, provider, DimensionPhysics.CODEC, definition, this.pathProvider.json(id)));
