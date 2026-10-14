@@ -67,31 +67,56 @@ public abstract class DimensionPhysicsProvider implements DataProvider {
             this.dimension = dimension;
         }
 
+        /**
+         * @param priority the priority of the file, higher values will override
+         * @return this
+         */
         public Builder priority(int priority) {
             this.priority = priority;
             return this;
         }
 
+        /**
+         * @param drag universal drag of the dimension
+         * @return this
+         */
         public Builder drag(float drag) {
             this.universalDrag = Optional.of(drag);
             return this;
         }
 
+        /**
+         * @param gravity base gravity of the dimension
+         * @return this
+         */
         public Builder gravity(Vector3f gravity) {
             this.baseGravity = Optional.of(gravity);
             return this;
         }
 
+        /**
+         * @param pressure base pressure of the dimension
+         * @return this
+         */
         public Builder pressure(double pressure) {
             this.basePressure = Optional.of(pressure);
             return this;
         }
 
+        /**
+         * @param function pressure function
+         * @return this
+         * @see BezierResourceFunction
+         */
         public Builder pressureFunc(BezierResourceFunction function) {
             this.pressureFunction = Optional.of(function);
             return this;
         }
 
+        /**
+         * @param north magnetic north of the dimension
+         * @return this
+         */
         public Builder north(Vector3f north) {
             this.magneticNorth = Optional.of(north);
             return this;
